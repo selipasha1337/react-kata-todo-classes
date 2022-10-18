@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { formatDistance } from 'date-fns'
 
+import Button from '../UI/Button/Button'
+
 import '../UI/Icon.css'
 import styles from './Task.module.css'
 
@@ -42,8 +44,8 @@ class Task extends Component {
                 <span className={styles.task__infoDescription}>{task.title}</span>
                 <span className={styles.task__infoCreated}>{getTimeAgo}</span>
               </div>
-              <button className="icon icon__edit" type="button" aria-label="edit" onClick={editTask} />
-              <button className="icon icon__destroy" type="button" aria-label="delete" onClick={deleteTask} />
+              <Button className="icon icon__edit" type="button" aria-label="edit" onClick={editTask} />
+              <Button className="icon icon__destroy" type="button" aria-label="delete" onClick={deleteTask} />
             </div>
           )}
         </div>
