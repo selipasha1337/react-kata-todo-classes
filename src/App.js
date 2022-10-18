@@ -23,6 +23,8 @@ class App extends Component {
     edit: null,
   }
 
+  //123
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.tasks !== this.state.tasks) {
       this.setState({ filterStatus: 'all' })
