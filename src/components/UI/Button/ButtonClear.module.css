@@ -1,0 +1,11 @@
+.buttonClear,
+.buttonClear:active {
+  position: relative;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.buttonClear:hover {
+  text-decoration: underline;
+}

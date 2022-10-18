@@ -1,0 +1,44 @@
+.tasksFilters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  right: 0;
+  left: 0;
+}
+
+.tasksFilters__item {
+  display: inline;
+  cursor: default;
+}
+
+.tasksFilters__button::first-letter {
+  text-transform: capitalize;
+}
+
+.tasksFilters__button {
+  display: inline-block;
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.tasksFilters__button:not(.tasksFilters__button_selected) {
+  cursor: pointer;
+}
+
+.tasksFilters__item:hover .tasksFilters__button {
+  border-color: rgba(175, 47, 47, 0.1);
+}
+
+.tasksFilters__item .tasksFilters__button_selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
+@media (max-width: 430px) {
+  .tasksFilters {
+    bottom: 10px;
+  }
+}
