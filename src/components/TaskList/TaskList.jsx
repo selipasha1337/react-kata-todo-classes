@@ -30,6 +30,15 @@ class TaskList extends Component {
   }
 }
 
+TaskList.defaultProps = {
+  tasks: [],
+  edit: null,
+  toggleTask: () => {},
+  deleteTask: () => {},
+  editTask: () => {},
+  saveTask: () => {},
+}
+
 TaskList.propTypes = {
   tasks: PropTypes.array,
   edit: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),

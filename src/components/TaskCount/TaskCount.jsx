@@ -14,6 +14,10 @@ class TaskCount extends Component {
   }
 }
 
+TaskCount.defaultProps = {
+  count: 0,
+}
+
 TaskCount.propTypes = {
   count: PropTypes.number,
 }

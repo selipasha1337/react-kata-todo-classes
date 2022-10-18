@@ -29,6 +29,11 @@ class TasksFilter extends Component {
   }
 }
 
+TasksFilter.defaultProps = {
+  filterStatus: 'all',
+  changeFilter: () => {},
+}
+
 TasksFilter.propTypes = {
   filterStatus: PropTypes.string,
   changeFilter: PropTypes.func,

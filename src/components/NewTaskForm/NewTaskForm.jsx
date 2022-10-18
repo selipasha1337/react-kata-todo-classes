@@ -36,6 +36,10 @@ class NewTaskForm extends Component {
   }
 }
 
+NewTaskForm.defaultProps = {
+  addTask: () => {},
+}
+
 NewTaskForm.propTypes = {
   addTask: PropTypes.func,
 }

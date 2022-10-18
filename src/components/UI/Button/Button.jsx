@@ -13,6 +13,12 @@ class Button extends Component {
   }
 }
 
+Button.defaultProps = {
+  type: 'button',
+  onClick: () => {},
+  className: '',
+}
+
 Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
