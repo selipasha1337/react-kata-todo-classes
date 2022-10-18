@@ -91,14 +91,14 @@ class App extends Component {
 
   saveTaskHandler = (e, id, title) => {
     e.preventDefault()
-
-    this.setState({
-      tasks: this.state.tasks.map((task) => {
-        return task.id === id ? { ...task, title } : { ...task }
-      }),
-    })
-
-    this.setState({ edit: null })
+    if (title.trim()) {
+      this.setState({
+        tasks: this.state.tasks.map((task) => {
+          return task.id === id ? { ...task, title } : { ...task }
+        }),
+      })
+      this.setState({ edit: null })
+    }
   }
 
   render() {
