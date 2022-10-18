@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './TaskCount.module.css'
 
@@ -11,6 +12,10 @@ class TaskCount extends Component {
       } left`}</span>
     )
   }
+}
+
+TaskCount.propTypes = {
+  count: PropTypes.number,
 }
 
 export default TaskCount

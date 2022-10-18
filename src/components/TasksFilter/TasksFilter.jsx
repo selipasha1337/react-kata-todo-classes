@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Button from '../UI/Button/Button'
 
@@ -26,6 +27,11 @@ class TasksFilter extends Component {
 
     return <ul className={styles.tasksFilters}>{buttons}</ul>
   }
+}
+
+TasksFilter.propTypes = {
+  filterStatus: PropTypes.string,
+  changeFilter: PropTypes.func,
 }
 
 export default TasksFilter

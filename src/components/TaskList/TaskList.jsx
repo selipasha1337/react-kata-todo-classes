@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Task from '../Task/Task'
 
@@ -6,7 +7,7 @@ import styles from './TaskList.module.css'
 
 class TaskList extends Component {
   render() {
-    const { tasks, toggleTask, deleteTask, editTask, edit, saveTask } = this.props
+    const { tasks, edit, toggleTask, deleteTask, editTask, saveTask } = this.props
 
     return (
       <ul className={styles.taskList}>
@@ -27,6 +28,15 @@ class TaskList extends Component {
       </ul>
     )
   }
+}
+
+TaskList.propTypes = {
+  tasks: PropTypes.array,
+  edit: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
+  toggleTask: PropTypes.func,
+  deleteTask: PropTypes.func,
+  editTask: PropTypes.func,
+  saveTask: PropTypes.func,
 }
 
 export default TaskList

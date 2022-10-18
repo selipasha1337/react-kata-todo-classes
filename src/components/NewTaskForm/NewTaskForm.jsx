@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './NewTaskForm.module.css'
 
@@ -21,17 +22,22 @@ class NewTaskForm extends Component {
   }
 
   render() {
+    const { newTaskValue } = this.state
     return (
       <form onSubmit={this.taskSubmitHandler}>
         <input
           className={styles.newTaskForm}
           placeholder="What needs to be done?"
-          value={this.state.newTaskValue}
+          value={newTaskValue}
           onChange={this.inputChangeHandler}
         />
       </form>
     )
   }
+}
+
+NewTaskForm.propTypes = {
+  addTask: PropTypes.func,
 }
 
 export default NewTaskForm
