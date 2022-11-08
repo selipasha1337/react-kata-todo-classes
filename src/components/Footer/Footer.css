@@ -27,4 +27,8 @@
   .footer {
     height: 50px;
   }
+
+  .filters {
+    bottom: 10px;
+  }
 }

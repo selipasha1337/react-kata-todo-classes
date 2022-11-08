@@ -1,31 +1,27 @@
 import { Component } from 'react'
+import './TasksFilter.css'
 import PropTypes from 'prop-types'
 
-import Button from '../UI/Button/Button'
-
-import styles from './TasksFilter.module.css'
+import Button from '../UI/Button'
 
 class TasksFilter extends Component {
-  buttons = [{ title: 'all' }, { title: 'active' }, { title: 'completed' }]
-
-  render() {
+  filterButtonsRender = () => {
     const { filterStatus, changeFilter } = this.props
-    const buttons = this.buttons.map(({ title }) => {
+    const buttons = [{ title: 'all' }, { title: 'active' }, { title: 'completed' }]
+
+    return buttons.map(({ title }) => {
       return (
-        <li className={styles.tasksFilters__item} key={title}>
-          <Button
-            className={`${styles.tasksFilters__button} ${
-              filterStatus === title ? styles.tasksFilters__button_selected : ''
-            }`}
-            onClick={() => changeFilter(title)}
-          >
+        <li key={title}>
+          <Button className={filterStatus === title ? 'selected' : ''} onClick={() => changeFilter(title)}>
             {title}
           </Button>
         </li>
       )
     })
+  }
 
-    return <ul className={styles.tasksFilters}>{buttons}</ul>
+  render() {
+    return <ul className="filters">{this.filterButtonsRender()}</ul>
   }
 }
 

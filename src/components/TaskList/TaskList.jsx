@@ -1,51 +1,56 @@
 import { Component } from 'react'
+import './TaskList.css'
 import PropTypes from 'prop-types'
 
 import Task from '../Task/Task'
 
-import styles from './TaskList.module.css'
-
 class TaskList extends Component {
-  render() {
-    const { tasks, edit, toggleTask, deleteTask, editTask, saveTask } = this.props
+  renderTasks = () => {
+    const { tasks, removeTask, toggleTask, editTask, editId, saveTask, countdown } = this.props
 
-    return (
-      <ul className={styles.taskList}>
-        {!tasks.length && <h2 className={styles.taskList__empty}>Task list is empty</h2>}
-        {tasks.map((task) => {
-          return (
-            <Task
-              key={task.id}
-              task={task}
-              deleteTask={() => deleteTask(task.id)}
-              toggleTask={() => toggleTask(task.id)}
-              editTask={() => editTask(task.id)}
-              saveTask={saveTask}
-              edit={edit}
-            />
-          )
-        })}
-      </ul>
-    )
+    if (tasks.length) {
+      return tasks.map((task) => {
+        return (
+          <Task
+            key={task.id}
+            task={task}
+            removeTask={removeTask}
+            toggleTask={toggleTask}
+            editTask={editTask}
+            editId={editId}
+            saveTask={saveTask}
+            countdown={countdown}
+          />
+        )
+      })
+    } else {
+      return <h2 style={{ textAlign: 'center' }}>Task list is empty</h2>
+    }
+  }
+
+  render() {
+    return <ul className="todo-list">{this.renderTasks()}</ul>
   }
 }
 
 TaskList.defaultProps = {
   tasks: [],
-  edit: null,
+  editId: null,
   toggleTask: () => {},
   deleteTask: () => {},
   editTask: () => {},
   saveTask: () => {},
+  countdown: () => {},
 }
 
 TaskList.propTypes = {
   tasks: PropTypes.array,
-  edit: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
+  editId: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
   toggleTask: PropTypes.func,
   deleteTask: PropTypes.func,
   editTask: PropTypes.func,
   saveTask: PropTypes.func,
+  countdown: PropTypes.func,
 }
 
 export default TaskList

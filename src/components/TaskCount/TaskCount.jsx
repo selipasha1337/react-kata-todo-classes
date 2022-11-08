@@ -1,13 +1,11 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './TaskCount.module.css'
-
 class TaskCount extends Component {
   render() {
     const { count } = this.props
     return (
-      <span className={count > 0 ? styles.taskCount : styles.taskCount__hidden}>{`${count} ${
+      <span className={count > 0 ? 'todo-count' : 'todo-count--hide'}>{`${count} ${
         count > 1 ? 'items' : 'item'
       } left`}</span>
     )

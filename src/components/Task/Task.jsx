@@ -1,10 +1,7 @@
 import { Component } from 'react'
 import { formatDistance } from 'date-fns'
 
-import Button from '../UI/Button/Button'
-
-import '../UI/Icon.css'
-import styles from './Task.module.css'
+import TaskCountdown from '../TaskCountdown/TaskCountdown'
 
 class Task extends Component {
   state = {
@@ -15,40 +12,54 @@ class Task extends Component {
     this.setState({ newTaskValue: e.target.value })
   }
 
-  render() {
-    const { task, toggleTask, deleteTask, editTask, edit, saveTask } = this.props
+  timeAgoFormat = (date) => {
+    return formatDistance(new Date(date), new Date(), { addSuffix: true })
+  }
+
+  editFormRender = () => {
     const { newTaskValue } = this.state
-    const getTimeAgo = formatDistance(new Date(task.createdAt), new Date(), { addSuffix: true })
+    const { saveTask, task } = this.props
 
     return (
-      <li className={task.isCompleted ? [styles.task, styles.task_completed].join(' ') : styles.task}>
-        <div className={styles.task__view}>
-          {edit === task.id ? (
-            <form onSubmit={(e) => saveTask(e, task.id, newTaskValue)}>
-              <input
-                type="text"
-                className={styles.task__edit}
-                value={this.state.newTaskValue}
-                onChange={this.inputChangeHandler}
-              />
-            </form>
-          ) : (
-            <div>
-              <input
-                className={styles.task__toggle}
-                type="checkbox"
-                defaultChecked={task.isCompleted}
-                onClick={toggleTask}
-              />
-              <div className={styles.task__info}>
-                <span className={styles.task__infoDescription}>{task.title}</span>
-                <span className={styles.task__infoCreated}>{getTimeAgo}</span>
-              </div>
-              <Button className="icon icon__edit" type="button" aria-label="edit" onClick={editTask} />
-              <Button className="icon icon__destroy" type="button" aria-label="delete" onClick={deleteTask} />
-            </div>
-          )}
+      <form onSubmit={(e) => saveTask(e, task.id, newTaskValue)}>
+        <input type="text" className="edit" value={newTaskValue} onChange={this.inputChangeHandler} />
+      </form>
+    )
+  }
+
+  taskClassFormat = () => {
+    const { editId, task } = this.props
+
+    if (editId === task.id) {
+      return 'editing'
+    } else if (task.isCompleted) {
+      return 'completed'
+    } else {
+      return ''
+    }
+  }
+
+  render() {
+    const { task, removeTask, toggleTask, editTask, editId, countdown } = this.props
+
+    return (
+      <li className={this.taskClassFormat()}>
+        <div className="view">
+          <input
+            className="toggle"
+            type="checkbox"
+            onClick={() => toggleTask(task.id)}
+            defaultChecked={task.isCompleted}
+          />
+          <div className="list-label">
+            <span className="title">{task.title}</span>
+            <TaskCountdown task={task} countdown={countdown} />
+            <span className="description">{this.timeAgoFormat(task.createdAt)}</span>
+          </div>
+          <button className="icon icon-edit" onClick={() => editTask(task.id)}></button>
+          <button className="icon icon-destroy" onClick={() => removeTask(task.id)}></button>
         </div>
+        {editId === task.id ? this.editFormRender() : null}
       </li>
     )
   }
