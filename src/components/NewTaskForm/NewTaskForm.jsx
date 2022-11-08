@@ -67,6 +67,7 @@ class NewTaskForm extends Component {
           name="minutesValue"
           value={minutesValue}
           onChange={this.handleInputChange}
+          type="number"
         />
         <input
           className="new-todo-form__timer"
@@ -74,6 +75,7 @@ class NewTaskForm extends Component {
           name="secondsValue"
           value={secondsValue}
           onChange={this.handleInputChange}
+          type="number"
         />
         <input type="submit" className="hidden" />
       </form>
