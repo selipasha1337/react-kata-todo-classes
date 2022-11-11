@@ -1,1 +1,1 @@
-https://react-kata-todo-classes-de055gc53-selipasha1337.vercel.app/
+https://react-kata-todo-classes-qoqbeztyl-selipasha1337.vercel.app/
