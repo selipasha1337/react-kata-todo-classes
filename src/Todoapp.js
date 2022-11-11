@@ -54,7 +54,6 @@ class Todoapp extends Component {
 
     if (prevState.tasks !== this.state.tasks) {
       window.localStorage.setItem('tasks', JSON.stringify(tasks))
-      this.setState({ filterStatus: 'all' })
     }
   }
 

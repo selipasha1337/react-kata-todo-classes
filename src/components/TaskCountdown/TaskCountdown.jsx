@@ -4,6 +4,33 @@ class TaskCountdown extends Component {
   state = {
     isStart: false,
     isDisabled: false,
+    timerID: null,
+  }
+
+  componentDidMount() {
+    const { task } = this.props
+
+    if (task.isCompleted) {
+      this.setState({ isDisabled: true })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { task } = this.props
+
+    if (prevProps.task.isCompleted !== task.isCompleted) {
+      if (task.isCompleted) {
+        this.setState({ isDisabled: true })
+        this.setState({ isStart: false })
+        this.pause()
+      } else {
+        this.setState({ isDisabled: false })
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.pause()
   }
 
   tick = () => {
@@ -18,7 +45,11 @@ class TaskCountdown extends Component {
   }
 
   start = () => {
-    this.timerID = setInterval(() => this.tick(), 1000)
+    this.setState({ timerID: setInterval(() => this.tick(), 1000) })
+  }
+
+  pause = () => {
+    clearInterval(this.state.timerID)
   }
 
   change = () => {
@@ -30,10 +61,6 @@ class TaskCountdown extends Component {
       this.pause()
       this.setState({ isStart: false })
     }
-  }
-
-  pause = () => {
-    clearInterval(this.timerID)
   }
 
   disabledHandler = () => {
